@@ -1,0 +1,11 @@
+
+div{
+  margin-top: 1rem;
+}
+svg{
+  width: 100%;
+}
+
+rect{
+  fill: var(--bg);
+}

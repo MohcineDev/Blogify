@@ -1,0 +1,90 @@
+<form [formGroup]="myForm" class="form-container" (ngSubmit)="createPost()">
+    <h2>Create Post</h2>
+
+    <div class="form-group">
+        <label for="title">Title : </label>
+        <input type="text" formControlName="title" placeholder="post title" id="title">
+        @if(myForm.get('title')?.invalid && myForm.get('title')?.touched){
+        <div>
+            @if (myForm.get('title')?.hasError('required')) {
+            <small>title is required.</small>
+            }
+            @if (myForm.get('title')?.hasError('minlength') ) {
+            <small>Minimum 3 characters.</small>
+            }
+            @if (myForm.get('title')?.hasError('maxlength') ) {
+            <small>max 100 characters.</small>
+            }
+        </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="content">Content : </label>
+        <textarea id="content" formControlName="content" placeholder="post description" rows="5"></textarea>
+
+        @if(myForm.get('content')?.invalid && myForm.get('content')?.touched){
+        <div>
+            @if (myForm.get('content')?.hasError('required')) {
+            <small>content is required.</small>
+            }
+            @if (myForm.get('content')?.hasError('minlength') ) {
+            <small>Minimum 3 characters.</small>
+            }
+
+            @if (myForm.get('content')?.hasError('maxlength') ) {
+            <small>max 500 characters.</small>
+            }
+        </div>
+        }
+
+    </div>
+    <div class="form-group">
+        <label for="media">Select Media (Images/Videos) : </label>
+        <input type="file" id="media" (change)="onFileSelected($event)" multiple accept="image/*, video/*">
+    </div>
+
+    @if(selectedFiles.length> 0){
+    <div class="media-preview-container container-no-h">
+        <h3>Selected Media ({{selectedFiles.length}})</h3>
+        <div class="wrapper">
+
+            @for(file of selectedFiles; track file.url){
+            <div class="media-item">
+                @if(file.isImage){
+                <img [src]="file.url" alt="preview" class="media-thumbnail">
+                }
+                @if(!file.isImage){
+                <video [src]="file.url" class="media-thumbnail" controls></video>
+                }
+                <div class="media-details">
+
+                    @if(file.isUploading){
+                    <p class="status uploading">Uploading...</p>
+                    }
+                    @if(file.uploadedUrl){
+                    <p class="status success">Uploaded (Ready)</p>
+                    }
+                </div>
+                <button type="button" (click)="removeFile($index)" [disabled]="file.isUploading">
+                    X
+                </button>
+            </div>
+            }
+        </div>
+    </div>
+    }
+    <span>Form Status: {{ myForm.status }}</span>
+
+
+    <button type="submit" [disabled]="myForm.invalid || loading ">
+        {{isEditMode ? 'Update Post' : 'Create Post'}}
+    </button>
+
+</form>
+
+@if(loading){
+<div class="spinner-container">
+    <span class="spinner"></span>
+</div>
+}

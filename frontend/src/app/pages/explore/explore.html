@@ -1,0 +1,79 @@
+@if(loading){
+<section>
+    Loading Users...
+
+</section>
+} 
+
+<div class="container">
+    <div class="header">
+        <h1>Explore</h1>
+        <p>here you can find users to follow</p>
+    </div>
+    @if(!loading && users.length === 0){
+    <p class="no-user">no user to follow!!</p>
+    }
+    <section>
+        @for(u of users; track u.id) {
+        <div class="ex-card">
+            <div class="profile-img">
+                <a [routerLink]="['/profile', u.username]">
+                    <img class="card-img-top" [src]="'https://i.pravatar.cc/150?u='+u.id" (error)="$any($event.target).src = 'avatar.jpg'" alt="Card image cap">
+                </a>
+                <div class="status">
+                    @if(u.banned){
+                    <span class=" user-status banned">banned</span>
+                    }@else{
+                    <span class="user-status active">active</span>
+                    }
+                </div>
+            </div>
+            <div>
+                <h3>{{u.username}}</h3>
+                <h4>role : {{u.role}}</h4>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing!</p>
+            <div class="btns">
+                <button  (click)="reportUser(u.id)">Report</button>
+                <button >
+                    <a [routerLink]="['/profile', u.username]">
+                        Profile
+                    </a>
+                </button>
+            </div>
+        </div>
+        }
+    </section>
+    <div class="footer-nav">
+
+        <button (click)="loadless()" [ngClass]="hideLessBtn ? 'hide' : ''" title="load less">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+            </svg>
+
+        </button>
+        <button (click)="loadmore()" title="load more" [ngClass]="hideLoadBtn ? 'hide' : ''">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+            </svg>
+        </button>
+    </div>
+</div>
+
+
+@if(loading){
+<div class="spinner-container">
+    <span class="spinner"></span>
+</div>
+}
+@if(!isOwnProfile ){
+
+<app-confirm [displayConfirm]="report" (toparent)="hideConfirm()" (submit)="submitReport()"
+    [errMsg]="confirmErrMsg"></app-confirm>
+}
+ 

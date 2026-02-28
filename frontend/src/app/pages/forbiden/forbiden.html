@@ -1,0 +1,141 @@
+<div class="container">
+
+<svg width="100%" height="100%" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Neon gradients -->
+    <linearGradient id="neonCyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1954a9"/>
+      <stop offset="100%" stop-color="#00bcd4"/>
+    </linearGradient>
+
+    <linearGradient id="neonPurple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="yellow"/>
+      <stop offset="100%" stop-color="red"/>
+    </linearGradient>
+
+    <!-- Planet gradients -->
+    <radialGradient id="planetBlue" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#1ff7ff"/>
+      <stop offset="100%" stop-color="#0b4a6f"/>
+    </radialGradient>
+
+    <radialGradient id="planetPurple" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#d1b3ff"/>
+      <stop offset="100%" stop-color="#3f2b96"/>
+    </radialGradient>
+
+    <!-- Star glow -->
+    <filter id="starGlow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- HUD glow -->
+    <filter id="hudGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    text {
+      font-family: 'Arial', 'Helvetica', sans-serif;
+      letter-spacing: 2px;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect width="900" height="520" fill="#161624"/>
+
+  <!-- Starfield -->
+  <g filter="url(#starGlow)">
+    <!-- Bright stars -->
+    <g fill="#ffffff" opacity="0.9">
+      <circle cx="70" cy="40" r="1.8"/>
+      <circle cx="160" cy="90" r="1.4"/>
+      <circle cx="260" cy="60" r="1.6"/>
+      <circle cx="380" cy="120" r="1.5"/>
+      <circle cx="520" cy="40" r="1.8"/>
+      <circle cx="640" cy="90" r="1.4"/>
+      <circle cx="760" cy="60" r="1.6"/>
+      <circle cx="860" cy="120" r="1.5"/>
+
+      <circle cx="90" cy="220" r="1.4"/>
+      <circle cx="210" cy="260" r="1.7"/>
+      <circle cx="350" cy="230" r="1.5"/>
+      <circle cx="480" cy="270" r="1.8"/>
+      <circle cx="620" cy="240" r="1.4"/>
+      <circle cx="760" cy="280" r="1.6"/>
+
+      <circle cx="60" cy="420" r="1.7"/>
+      <circle cx="200" cy="460" r="1.4"/>
+      <circle cx="340" cy="430" r="1.6"/>
+      <circle cx="500" cy="460" r="1.8"/>
+      <circle cx="660" cy="430" r="1.4"/>
+      <circle cx="820" cy="460" r="1.6"/>
+    </g>
+
+    <!-- Dim background stars -->
+    <g fill="#bcd6ff" opacity="0.5">
+      <circle cx="130" cy="30" r="1"/>
+      <circle cx="300" cy="90" r="0.9"/>
+      <circle cx="450" cy="60" r="1"/>
+      <circle cx="590" cy="110" r="0.8"/>
+      <circle cx="720" cy="30" r="1"/>
+
+      <circle cx="40" cy="180" r="0.9"/>
+      <circle cx="180" cy="190" r="1"/>
+      <circle cx="310" cy="160" r="0.8"/>
+      <circle cx="440" cy="200" r="1"/>
+      <circle cx="570" cy="170" r="0.9"/>
+      <circle cx="700" cy="200" r="1"/>
+      <circle cx="840" cy="180" r="0.8"/>
+
+      <circle cx="150" cy="350" r="1"/>
+      <circle cx="290" cy="390" r="0.9"/>
+      <circle cx="430" cy="360" r="1"/>
+      <circle cx="570" cy="390" r="0.8"/>
+      <circle cx="710" cy="350" r="1"/>
+    </g>
+  </g>
+
+  <!-- Planets -->
+  <circle cx="120" cy="360" r="70" fill="url(#planetPurple)" opacity="0.9"/>
+  <ellipse cx="120" cy="360" rx="90" ry="20" fill="none" stroke="#b388ff" stroke-width="2" opacity="0.5"/>
+
+  <circle cx="760" cy="140" r="35" fill="url(#planetBlue)" opacity="0.9"/>
+  <circle cx="680" cy="60" r="18" fill="#7c8db5" opacity="0.6"/>
+
+  <!-- HUD -->
+  <circle cx="450" cy="230" r="110" fill="none" stroke="url(#neonCyan)" stroke-width="4" filter="url(#hudGlow)"/>
+  <circle cx="450" cy="230" r="140" fill="none" stroke="url(#neonPurple)" stroke-width="1" stroke-dasharray="6 10"/>
+
+  <line x1="450" y1="90" x2="450" y2="370" stroke="#1954a9" stroke-width="2"/>
+  <line x1="310" y1="230" x2="590" y2="230" stroke="#1954a9" stroke-width="2"/>
+
+  <!-- 404 -->
+  <text x="450" y="245" font-size="80" font-weight="bold" text-anchor="middle" fill="cyan">
+    403
+  </text>
+
+  <text x="450" y="305" font-size="18" text-anchor="middle" fill="#b388ff">
+    ERROR · Forbiden
+  </text>
+
+  <line x1="320" y1="330" x2="580" y2="330" stroke="url(#neonCyan)" stroke-width="2"/>
+
+  <text x="450" y="370" font-size="22" font-weight="bold" text-anchor="middle" fill="#00f6ff">
+    BLOGIFY
+  </text>
+
+  <text x="450" y="410" font-size="14" text-anchor="middle" fill="#7c8db5">
+    SYSTEM NAVIGATION FAILURE
+  </text>
+</svg>
+</div>

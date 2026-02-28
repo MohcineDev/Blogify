@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&display=swap');
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--profile-card);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+
+.form-container>div {
+    padding: 2rem;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container>div:nth-of-type(1) {
+    color: #eee;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    font-family: "Alkatra", system-ui;
+    background: linear-gradient(130deg, #296dce, #06244f);
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo>div {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 150px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo>div svg {
+    width: 50px;
+}
+
+.logo>div svg path {
+    fill: #296dce;
+    stroke: #06244f;
+}
+
+.form-container>div:nth-of-type(2)>span,
+.form-container>div:nth-of-type(1) span {
+    font-size: 2rem;
+    margin-top: 18px;
+    font-family: "Alkatra", system-ui;
+    text-align: center;
+}
+
+.form-container>div:nth-of-type(2) p {
+    text-align: right;
+}
+
+.form-container>div:nth-of-type(2) p a {
+    text-decoration: underline;
+}
+
+.invalid {
+    box-shadow: 0 0 5px crimson;
+}
+
+form {
+    padding: 20px 0;
+}
+
+form>div {
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+}
+
+.form>p {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 0;
+}
+
+.form>p a {
+    color: var(--main-col);
+    text-decoration: underline;
+}
+
+small {
+    color: rgb(247, 75, 112);
+    text-align: center;
+    height: 20px;
+}
+
+input {
+    border-radius: 0;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--blue);
+    outline: none;
+
+    margin: 0;
+    width: 100%;
+    padding: 5px 0;
+}
+
+button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    color: #eee;
+    background-color: #1954a9;
+}
+
+@media screen and (max-width: 600px) {
+    .form-container {
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+
+    .form-container>div {
+        padding: 1rem;
+    }
+
+    .form-container>div:nth-of-type(1) p {
+        display: none;
+    }
+
+
+    .logo>div {
+        padding: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .form-container>div:nth-of-type(2)>span,
+    .form-container>div:nth-of-type(1) span {
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+}

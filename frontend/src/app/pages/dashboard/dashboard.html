@@ -1,0 +1,438 @@
+@if(message){
+<p>{{message}}</p>
+}
+
+<div class="dashboard-container">
+    <div [ngClass]="hideaside ? '' : 'overlay'" (click)="hideaside =true"></div>
+    <button class="manage-aside" (click)="hideaside = false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
+        </svg>
+    </button>
+    <aside [ngClass]="hideaside ? '' : 'display-aside'">
+        <div class="top">
+            <div class="hide-aside">
+                <a routerLink="/home" class="logo">
+                    <span class="logo">Blogify</span></a>
+            </div>
+            <div class="hide-burger" (click)="hideaside = true">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
+                </svg>
+            </div>
+            <div class="top_two">
+
+                <button (click)="displayUsers()">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z">
+                        </path>
+                    </svg>
+                    <span>USERS</span>
+                </button>
+                <button (click)="displayPosts()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                    </svg>
+                    <span>POSTS</span>
+                </button>
+                <span>Reports</span>
+                <button (click)="displayReportedUsers()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z">
+                        </path>
+                    </svg>
+                    <span>users</span>
+                </button>
+                <button (click)="displayReportedPosts()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                    </svg>
+                    <span>posts</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="bottom">
+
+            <button (click)="logout()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9">
+                    </path>
+                </svg>
+
+                <span>Logout</span>
+            </button>
+        </div>
+
+    </aside>
+    <main class="dashboard-main">
+
+        <section class="stats">
+            <div (click)="displayUsers()">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z">
+                        </path>
+                    </svg>
+                    <strong>Total Users</strong>
+                </div>
+                <span>{{totalCounts.users}}</span>
+            </div>
+            <div (click)="displayPosts()">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z">
+                        </path>
+                    </svg>
+                    <strong>Total posts</strong>
+                </div>
+                <span>{{totalCounts.posts}}</span>
+            </div>
+            <div (click)="displayReportedUsers()">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z">
+                        </path>
+                    </svg>
+                    <strong>reported Users</strong>
+                </div>
+                <span>{{totalCounts.reportedUsers}}</span>
+            </div>
+            <div (click)="displayReportedPosts()">
+                <div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z">
+                        </path>
+                    </svg>
+                    <strong>reported Posts</strong>
+                </div>
+                <span>{{totalCounts.reportedPosts}}</span>
+            </div>
+        </section>
+
+        <!-- users -->
+        @if(toDisplay == "users"){
+        @if(totalCounts.users<1){ <h2 class="hint">no users yet</h2>
+
+            } @else{
+            <section class="table">
+                <h3 class="title">users</h3>
+                <table>
+
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th colspan="3">Actions</th>
+                    </tr>
+                    @for(user of users; track user.id){
+                    <tr>
+                        <td>{{user.username}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <a class="round-btn open" [routerLink]="['/profile', user.username]">open&nbsp;profile</a>
+                        </td>
+                        <td>
+                            @if(user.banned){
+                            <button (click)="prepareUnbanUser(user.id)" class="round-btn ban">Unban</button>
+                            }@else{
+                            <button (click)="prepareBanUser(user.id)" class="round-btn ban">ban</button>
+                            }
+
+                        </td>
+                        <td>
+                            <button (click)="prepareDeleteuser(user.id)" class="round-btn delete">Delete</button>
+
+                        </td>
+                    </tr>
+                    }
+                </table>
+                <div class="footer-nav">
+
+                    <button (click)="loadless()" [ngClass]="hideLessBtn ? 'hide' : ''" title="load less">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+                        </svg>
+
+                    </button>
+                    <button (click)="loadmore()" title="load more" [ngClass]="hideLoadBtn ? 'hide' : ''">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
+            </section>
+            }
+            }
+            <!-- posts -->
+            @if(toDisplay == "posts"){
+            @if(totalCounts.posts<1){ <h2 class="hint">Try creating a post</h2>
+
+                } @else{
+                <section class="table">
+                    <h3 class="title">posts</h3>
+                    <table>
+                        <tr>
+                            <th>author</th>
+                            <th>title</th>
+                            <th colspan="3">Actions</th>
+                        </tr>
+                        @for(post of posts; track post.id){
+                        <tr>
+                            <td>{{post.author}}</td>
+                            <td>{{post.title | slice: 0:30}}</td>
+                            <td>
+                                <a class="round-btn open" [routerLink]="['/post', post.id]">open post</a>
+                            </td>
+                            <td>
+                                @if(post.hided){
+                                <button (click)="prepareUnhidePost(post.id)" class="round-btn hide-btn">unhide</button>
+                                } @else{
+                                <button (click)="prepareHidePost(post.id)" class="round-btn hide-btn">hide</button>
+                                }
+                            </td>
+                            <td>
+                                <button (click)="prepareDeletePost(post.id)" class="round-btn delete">Delete</button>
+                            </td>
+                        </tr>
+                        }
+
+                    </table>
+                    <div class="footer-nav">
+
+                        <button (click)="loadlessPosts()" [ngClass]="hideLessBtn ? 'hide' : ''" title="load less">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+                            </svg>
+
+                        </button>
+                        <button (click)="loadmorePosts()" title="load more" [ngClass]="hideLoadBtn ? 'hide' : ''">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                </section>
+                }
+                }
+                @if(toDisplay == "reported users"){
+                @if(totalCounts.reportedUsers<1){ <h2 class="hint">Try report a user</h2>
+
+                    } @else{
+                    <section class="table reported users">
+                        <h3 class="title">reported users</h3>
+                        <div class="filter">
+                            <button [ngClass]="{'active' : activeBtn =='pending' }"
+                                (click)="getPendingReportedUsers()">PENDING</button>
+                            <button [ngClass]="{'active' :activeBtn =='resolved' }"
+                                (click)="getResolvedReportedUsers()">RESOLVED</button>
+                            <button [ngClass]="{'active' : activeBtn =='reopened' }"
+                                (click)="getReopenedReportedUsers()">REOPENED</button>
+                            <button [ngClass]="{'active' : activeBtn =='dismissed' }"
+                                (click)="getDismissedReportedUsers()">DISMISSED</button>
+                        </div>
+                        <table>
+                            <tr>
+                                <th>open</th>
+                                <th>Reason</th>
+                                <th>timestamp</th>
+                                <th>status</th>
+                                <th colspan="3">Actions</th>
+                            </tr>
+                            @if(!reportedUsers.length){
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="#666" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.182 16.318A4.486 4.486 0 0 0 12.016 15a4.486 4.486 0 0 0-3.198 1.318M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+                            </svg>
+
+                            }@else{
+                            @for(user of reportedUsers; track user.reportedUser){
+                            <tr>
+                                <td>
+                                    <a class="round-btn open"
+                                        [routerLink]="['/profile', user.ReportedUsername]">open</a>
+                                </td>
+                                <td>
+                                    <div class="reason">
+                                        <span>{{user.reason }}</span>
+                                        <button (click)="openToRead(user.reason)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>{{user.timestamp | date: 'short'}}</td>
+                                <td [ngClass]="{'resolved': user.status === 'RESOLVED','dismissed': user.status === 'DISMISSED',
+'reopened': user.status === 'REOPENED',  'pending': user.status === 'PENDING'}">
+                                    <span>
+                                        {{user.status}}
+                                    </span>
+                                </td>
+                                <td>
+                                    @if(!(activeBtn == 'dismissed')){
+                                    @if(user.isBanned){
+                                    <button class="round-btn ban"
+                                        (click)="prepareUnbanUser(user.ReportedUserId)">Unban</button>
+                                    }@else{
+                                    <button class="round-btn ban"
+                                        (click)="prepareBanUser(user.ReportedUserId)">ban</button>
+                                    }
+                                    }
+                                </td>
+                                <td>
+                                    <button (click)="prepareDeleteuser(user.ReportedUserId)"
+                                        class="round-btn delete">Delete</button>
+                                </td>
+                                <td>
+                                    @if(!(activeBtn == 'dismissed')){
+                                    <button (click)="prepareUserDissmisReport(user.ReportedUserId)"
+                                        class="round-btn dismissed">Dismiss</button>
+                                    }
+                                </td>
+                            </tr>
+                            }
+                            }
+                        </table>
+                    </section>
+                    }
+                    }
+                    @if(toDisplay == "reported posts"){
+                    @if(totalCounts.reportedPosts<1){ <h2 class="hint">Try report a post</h2>
+                        } @else{
+                        <section class="table reported posts">
+                            <h3 class="title">reported posts</h3>
+                            <div class="filter">
+                                <button [ngClass]="{'active' : activeBtn =='pending'}"
+                                    (click)="getPendingReportedPosts()">PENDING</button>
+                                <button [ngClass]="{'active' : activeBtn =='resolved'}"
+                                    (click)="getResolvedReportedPosts()">RESOLVED</button>
+                                <button [ngClass]="{'active' : activeBtn =='reopened'}"
+                                    (click)="getReopenedReportedPosts()">REOPENED</button>
+                                <button [ngClass]="{'active' : activeBtn =='dismissed'}"
+                                    (click)="getDismissedReportedPosts()">DISMISSED</button>
+                            </div>
+                            <table class="bg-dark">
+                                <tr>
+                                    <th>Post</th>
+                                    <th>reason</th>
+                                    <th>timestamp</th>
+                                    <th>status</th>
+                                    <th colspan="3">Actions</th>
+                                </tr>
+                                @if(!reportedPosts.length){
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="#666" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.182 16.318A4.486 4.486 0 0 0 12.016 15a4.486 4.486 0 0 0-3.198 1.318M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+                                </svg>
+
+                                }@else{
+
+                                @for(post of reportedPosts; track post.id){
+                                <tr>
+                                    <td>
+                                        <a class="round-btn open"
+                                            [routerLink]="['/post', post.reportedPostId]">open</a>
+                                    </td>
+                                    <td>
+                                        <div class="reason">
+                                            <span>{{post.reason }}</span>
+                                            <button (click)="openToRead(post.reason)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>{{post.timestamp | date: 'short'}}</td>
+                                    <td [ngClass]="{'resolved': post.status === 'RESOLVED',
+                                    'dismissed': post.status === 'DISMISSED',
+                                    'reopened': post.status === 'REOPENED', 
+                                    'pending': post.status === 'PENDING'}">
+                                        <span>
+                                            {{post.status}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @if(!(activeBtn == 'dismissed')){
+
+                                        @if(post.hided){
+                                        <button class="round-btn hide-btn"
+                                            (click)="prepareUnhidePost(post.reportedPostId)">Unhide</button>
+                                        } @else{
+                                        <button class="round-btn hide-btn"
+                                            (click)="prepareHidePost(post.reportedPostId)">Hide</button>
+                                        }
+                                        }
+                                    </td>
+                                    <td>
+                                        <button class="round-btn delete"
+                                            (click)="prepareDeletePost(post.reportedPostId)">Delete</button>
+                                    </td>
+
+                                    <td>
+                                        @if(!(activeBtn == 'dismissed') && !(activeBtn == 'resolved')){
+                                        <button (click)="preparePostDissmisReport(post.reportedPostId)"
+                                            class="round-btn dismissed">Dismiss</button>
+                                        }
+                                    </td>
+                                </tr>
+                                }
+                                }
+                            </table>
+                        </section>
+                        }
+                        }
+    </main>
+</div>
+
+@if(loading){
+<div class="spinner-container">
+    <span class="spinner"></span>
+</div>
+}
+
+
+@if(action_msg){
+<app-confirm-action [content]="action_msg" (submit)="confirmAction()" (cancel)="cancelAction()">
+
+</app-confirm-action>
+}

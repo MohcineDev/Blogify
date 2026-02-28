@@ -1,0 +1,125 @@
+.form-container {
+    margin-bottom: 50vh;
+    padding: 10px;
+}
+
+.form-group {
+    margin: 10px 0;
+}
+
+label {
+    display: block;
+    cursor: pointer;
+}
+
+label[for="media"] {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+textarea,
+input {
+    padding: 10px;
+    width: 600px;
+    margin: 0;
+}
+
+textarea {
+    min-height: 300px;
+}
+
+small {
+    color: rgb(255, 54, 94);
+}
+
+.form-group:nth-of-type(3) {
+    width: 600px;
+
+    box-sizing: border-box;
+    margin: 20px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+
+.form-container input[type=file] {
+    display: none;
+}
+
+.form-container button[type=submit] {
+    width: 600px;
+}
+
+.form-container textarea {
+    border: 1px solid var(--border-col);
+
+}
+
+
+button[type=submit] {
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: var(--shadow);
+    text-transform: uppercase;
+    margin: 5px;
+    background-color: var(--border-col);
+}
+
+.media-preview-container .wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 1rem 0;
+}
+
+.media-thumbnail {
+    width: 100%;
+}
+
+.media-item {
+    border: 1px solid #686868;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.media-item button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 50px;
+    background-color: crimson;
+    width: 20px;
+    height: 20px;
+    font-weight: 800;
+}
+
+
+@media screen and (max-width: 600px) {
+    .form-group {
+        width: 100% !important;
+        padding: 10px;
+
+    }
+
+    textarea,
+    input,
+    .form-container button[type=submit],
+    label[for="media"] {
+        width: 90%;
+        margin: auto;
+        display: block;
+    }
+
+    .media-preview-container .wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin: 1rem 0;
+    }
+
+}

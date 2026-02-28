@@ -1,0 +1,286 @@
+.nav {
+  width: 100vw;
+  height: 54px;
+
+  padding: 0.75rem 1.5rem;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--profile-card);
+  color: var(--col);
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo>div {
+    padding: 5px;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    margin-right: 5px;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.logo>div svg path {
+    fill: #296dce;
+    stroke: #06244f;
+}
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  transition: left 0.3s;
+  left: 0;
+  background-color: var(--profile-card);
+
+}
+
+.left {
+  display: flex;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-right: 3rem;
+  margin-top: -5px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.left a:first-child img {
+  width: 30px;
+}
+
+.left a:first-child:hover {
+  text-decoration: none;
+}
+
+svg path {
+  stroke: var(--col);
+}
+
+.right>button,
+a {
+  margin-right: 1rem;
+}
+
+button:hover,
+a:hover {
+  text-decoration: underline;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.right span {
+  margin-right: 1rem;
+}
+
+svg {
+  pointer-events: none;
+}
+
+.theme svg {
+  width: 25px;
+  height: 25px;
+}
+
+.theme svg {
+  stroke: #fff;
+  fill: var(--fill);
+  filter: drop-shadow(0 0 7px yellow);
+}
+
+.dark .theme svg {
+  fill: var(--fill);
+}
+
+.create-post {
+  padding: 5px 10px;
+  font-weight: 700;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--blue);
+  color: #fff;
+  box-shadow: 0 0 8px 0px #1954a9;
+}
+
+.notification-container {
+  position: relative;
+  margin-right: 1rem;
+
+}
+
+.overlay {
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.notification-container button span {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background-color: crimson;
+  border-radius: 10px;
+}
+
+.notification div {
+  display: flex;
+  align-items: center;
+}
+
+.notification svg {
+  width: 15px;
+  margin-right: 10px;
+}
+
+.menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+  width: max-content;
+  top: 120%;
+  right: 0;
+  max-height: 0px;
+  overflow: hidden;
+  border-radius: 5px;
+  transition: max-height 0.3s;
+  z-index: 5;
+  border: 0 solid var(--border-col);
+  border-left-width: 1px;
+  border-right-width: 1px;
+  padding: 0 5px;
+  background-color: var(--profile-card);
+  box-shadow: 0 0px 5px #4c78db inset;
+}
+
+.show {
+  max-height: 500px;
+}
+
+
+.notification p {
+  padding: 10px 0;
+  margin: 5px 0;
+}
+
+.notification p:not(.notification p:last-of-type) {
+  border-bottom: 1px solid gray;
+}
+
+.open-nav {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hide-nav {
+  transition: left 0.3s ease-in-out;
+  left: -100%;
+}
+
+.eye {
+  margin-left: 5px;
+}
+
+.notification-container .delete svg {
+  padding: 5px 0;
+}
+
+.notification-container .delete svg {
+  width: 30px;
+}
+
+
+svg.notif-icon path {
+  stroke: var(--notif);
+}
+
+svg.logout-icon path ,
+svg.delete-icon path {
+  stroke: #e6403b;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-wrapper {
+    position: absolute;
+    top: 100%;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: flex-start;
+    padding: 2rem 0;
+    z-index: 11;
+  }
+
+  .nav .left,
+  .right {
+    flex-direction: column;
+  }
+
+  a {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .logo {
+    margin: 1rem 0;
+  }
+
+  .left a {
+    padding: 5px 10px;
+    font-weight: 700;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--blue);
+    color: #fff;
+    box-shadow: 0 0 8px 0px #1954a9;
+
+  }
+
+  .open-nav {
+    display: block;
+  }
+
+  .right>button,
+  a {
+
+    width: 120px;
+  }
+
+  .right>button,
+  .right>div,
+  a {
+    margin: 1rem 0;
+  }
+
+  .right>span {
+    display: none;
+  }
+
+  .menu {
+    transform: translateX(50%);
+    right: 50%;
+  }
+}

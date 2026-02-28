@@ -1,0 +1,85 @@
+@if(!loading && posts.length){
+<section>
+    <h3>Recent Posts</h3>
+    <div>
+        @for(post of posts; track post.id){
+        <article class="post-card card">
+            <a [routerLink]="['/post', post.id]">
+                <div class="thumbnail">
+                    @if(post.media.length>=1){
+                        @if(post.media[0].type === 'IMAGE'){
+                            <img [src]="post.media[0].url" alt="-">
+                        } @else if(post.media[0].type === 'VIDEO'){
+                        <ng-container>
+                            <video   [src]="post.media[0].url" class="post-media-item">
+                                <source [src]="post.media[0].url">
+                                Your Browser doesn't support the video tag
+                            </video>
+                        </ng-container>
+                        }
+                    } @else{ 
+                            <img src="./no header img.png" alt="img"> 
+                    
+                    }
+                </div>
+                <div class="post-content">
+                    <div class="post-content-header">
+                        <a [routerLink]="['/profile', post.authorUsername]">
+                            <img src="./avatar-gray.jpg" alt="img">
+                        </a>
+                        <div>
+                            <span class="author-username">{{ post.authorUsername }}</span>
+                            <span class="date">{{ post.createdAt | date:'short' }}</span>
+                        </div>
+                    </div>
+                    
+                    <h1>{{post.title | slice: 0:50}}...</h1>
+                    <p>{{post.content | slice: 0:140}}... </p>
+                    <div class="footer">
+                        <small>
+                            <span [ngClass]="post.likedByCurrentUser ? 'liked' : '' ">likes {{post.totalLikes ||
+                                0}}</span>
+                            | comments {{post.totalComments || 0}} |
+                            created by {{post.authorUsername}}
+                        </small>
+
+                    </div>
+                </div>
+            </a>
+        </article>
+        }
+    </div>
+     <div class="footer-nav">
+        <button (click)="loadless()" [ngClass]="hideLessBtn ? 'hide' : ''" title="load less">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+            </svg>
+
+        </button>
+        <button (click)="loadmore()" title="load more" [ngClass]="hideLoadBtn ? 'hide' : ''">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+            </svg>
+        </button>
+    </div>
+</section>
+}
+
+<div class="list-footer-status">
+    @if(loading){
+    <div class="spinner-container">
+        <span class="spinner"></span>
+    </div>
+    }
+    @if(endOfList){
+    <p>No more posts.</p>
+    }
+
+</div>
+
+ 

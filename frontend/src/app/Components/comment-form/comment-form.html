@@ -1,0 +1,32 @@
+<form [formGroup]="commentForm" (ngSubmit)="addComment()" class="add-comment">
+    <textarea formControlName="content" placeholder="Write a comment..." rows="3"></textarea>
+     @if(contentControl?.touched && contentControl?.invalid){
+
+        @if (contentControl?.hasError('required') ) {
+        <small class="validation-error">Comment content is required.</small>
+        }
+        @if (contentControl?.hasError('whitespace') ) {
+        <small class="validation-error">Comment content is whitespaces.</small>
+        }
+        @if (contentControl?.hasError('minlength') ) {
+        <small class="validation-error">Comment content is 2 chars min</small>
+        }
+        @if (contentControl?.hasError('maxlength') ) {
+        <small class="validation-error">Comment content 100 max</small>
+        }
+
+        @if (submitError) {
+        <small class="submission-error">{{ submitError }}</small>
+        }
+    }  
+    <div>
+
+        <button type="submit" [disabled]="commentForm.invalid || isSubmitting">
+            @if (isSubmitting) {
+            Posting...
+            } @else {
+            Post Comment
+            }
+        </button>
+    </div>
+</form>

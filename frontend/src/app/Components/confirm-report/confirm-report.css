@@ -1,0 +1,91 @@
+
+
+
+.overlay {
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #1c57d61f;
+}
+
+.report-container {
+  position: absolute;
+  border-radius: 10px;
+  padding: 15px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  background-color: var(--profile-card); 
+  border: 1px solid #e47289;
+}
+
+.report-container svg {
+  width: 32px;
+  border: 1px solid #e47289;
+  outline: 1px solid #e47289;
+  outline-offset: 5px;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+h2 {
+  text-transform: capitalize;
+}
+
+.input-field {
+  padding: 12px 15px;
+  margin: 10px 0 2rem;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+  border: 1px;
+  border: 1px solid #e47289;
+
+}
+
+.login-btn {
+  display: inline-block;
+  padding: 5px 15px;
+  border: 2px solid #222;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: backgroundColor 0.3s ease;
+  margin: 2rem auto;
+  background-color: #bebebe;
+}
+
+button {
+
+  font-size: 1.2rem;
+  padding: 5px 15px;
+  margin: 0 10px;
+}
+
+.submit {
+  background-color: crimson;
+  border: 1px solid crimson;
+  color: #fff;
+}
+
+.cancel {
+  background-color: rgb(255, 249, 250);
+  border: 1px solid #302e2e;
+  color: #302e2e;
+}
+.error-message{
+  text-transform: capitalize;
+  color: crimson;
+}
+
+@media screen and (max-width: 600px) {
+  .report-container{
+    box-sizing: border-box;
+  }
+}

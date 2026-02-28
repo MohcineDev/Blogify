@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:15
+    container_name: blog-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    container_name: blog-backend
+    depends_on:
+      - db #add healthcheck
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
+    ports:
+      - "8080:8080"
+    command: ./mvnw spring-boot:run
+    working_dir: /app
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/pom.xml:/app/pom.xml
+      - ./uploads:/app/uploads 
+  frontend:
+    build: ./frontend
+    container_name: blog-frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:4200"
+    command: npm start
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+
+volumes:
+  postgres_data:
