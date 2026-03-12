@@ -1,6 +1,7 @@
 # Blog System: Full-Stack Social Blogging Platform
 
-This project is a modern, full-stack application designed to be a scalable social blogging platform. It features RESTful API communication, robust security using JWT, and a smooth user experience with infinite scrolling and robust error handling.
+Built a full-stack blogging platform using Spring Boot, Angular, and PostgreSQL, developing secure REST APIs with JWT authentication and role-based access control to support post creation and user interactions.
+
 
 ## 🚀 Technologies Used
 
