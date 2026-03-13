@@ -25,7 +25,7 @@ This project is split into two distinct parts: a Java Spring Boot backend for AP
 | **Framework** | Angular | A platform for building efficient and scalable single-page applications (SPAs). |
 | **Communication** | `HttpClient` & Interceptors | Manages HTTP requests and automatically attaches JWT tokens. |
 | **Routing** | Angular Router | Handles client-side navigation and route guarding. |
-| **UI/UX** | Custom CSS | Styling the application, including the infinite scroll user experience. |
+| **UI/UX** | Custom CSS | Styling the application with a clean, responsive user interface, implementing pagination for better content navigation, and enhancing layout, spacing, and visual consistency across devices. |
 
 ## ⚙️ Setup and Installation
 
@@ -98,6 +98,5 @@ Follow these steps to get the project running locally.
 
 * **Custom JWT Authentication Filter:** Handles token validation, manages the `SecurityContext`, and implements advanced error handling for **banned/deleted users** to ensure proper client-side logout/redirection.
 * **Role-Based Access Control (RBAC):** Utilizes Spring Security's `@EnableMethodSecurity` and `hasAuthority("ADMIN")` for endpoint protection.
-* **Infinite Scroll:** Implemented in the Angular component using the `@HostListener('window:scroll')` to efficiently load posts page-by-page. Special care is taken to prevent **scroll jumping** by reserving image space with CSS aspect ratios and carefully restoring the scroll position.
 * **Data Integrity (ON DELETE CASCADE):** JPA/Hibernate is configured using `@OnDelete(action = OnDeleteAction.CASCADE)` on foreign keys to automatically clean up related data (posts, comments) when a user is deleted by an administrator.
 
